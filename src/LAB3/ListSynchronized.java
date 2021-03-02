@@ -4,10 +4,10 @@ import java.util.*;
 
 public class ListSynchronized<E> implements List<E> {
 
-    private volatile List<E> list = new ArrayList<E>();
+    private final List<E> list = new ArrayList<E>();
 
     synchronized public void print() {
-        list.forEach(System.out::println);
+        System.out.println(list);;
     }
 
     @Override
