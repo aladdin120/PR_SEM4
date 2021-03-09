@@ -11,6 +11,10 @@ public class SetSemaphore<E> implements Set<E> {
     private volatile HashSet<E> set = new HashSet<E>();
     private static final Semaphore sem = new Semaphore(1);
 
+    public void print() {
+        System.out.println(set);
+    }
+
     @Override
     public int size() {
         return 0;

@@ -2,6 +2,7 @@ package LAB3;
 
 public class Main {
     private static ListSynchronized<Integer> list = new ListSynchronized<>();
+    private static SetSemaphore<Integer> set = new SetSemaphore<>();
 
     public static void ListSyncTask() {
         System.out.println("Main in ListSyncTask starts");
@@ -23,9 +24,14 @@ public class Main {
             System.out.println("Thread 2 ends");
         });
         thread1.start();
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         thread2.start();
         try {
-            Thread.sleep(1500);
+            Thread.sleep(100);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -35,19 +41,30 @@ public class Main {
         System.out.println("Main in SetSemTask starts");
         Thread thread1 = new Thread(() -> {
             System.out.println("Thread 1 starts");
-
+            for (int i = 0; i < 5; i++) {
+                set.add(i);
+            }
+            set.print();
             System.out.println("Thread 1 ends");
         });
 
         Thread thread2 = new Thread(() -> {
             System.out.println("Thread 2 starts");
-
+            for (int i = 5; i < 11; i++) {
+                set.add(i);
+            }
+            set.print();
             System.out.println("Thread 2 ends");
         });
         thread1.start();
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         thread2.start();
         try {
-            Thread.sleep(1500);
+            Thread.sleep(100);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -57,6 +74,6 @@ public class Main {
 
     public static void main(String[] args) {
         Main.ListSyncTask();
-
+        Main.SetSemTask();
     }
 }
