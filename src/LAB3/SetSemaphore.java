@@ -8,11 +8,17 @@ import java.util.concurrent.Semaphore;
 
 public class SetSemaphore<E> implements Set<E> {
 
-    private volatile HashSet<E> set = new HashSet<E>();
+    private final HashSet<E> set = new HashSet<E>();
     private static final Semaphore sem = new Semaphore(1);
 
     public void print() {
-        System.out.println(set);
+        try {
+            sem.acquire();
+            System.out.println(set);
+            sem.release();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
