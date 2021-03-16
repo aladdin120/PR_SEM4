@@ -23,20 +23,24 @@ test {
 
 jar {
     manifest {
-        attributes 'Main-Class' : 'org.example.Task.Main'
+        attributes 'Main-Class': 'org.example.Task.Main'
     }
 }
 
 
 task task1 {
-        task1.dependsOn jar
-        copy {
-            from 'build/libs/task-1.0.jar'
-            into 'Temp'
-        }
-    task1.doFirst buildDockerImage
+    task1.dependsOn jar
+    copy {
+        from jar
+        into projectDir
+    }
+    finalizedBy {
+        Docker
+    }
 }
 
-task buildDockerImage(type: Exec) {
-    commandLine "docker", "build", "-t", "${project.name}:${project.version}"
+task Docker(type: Exec) {
+    commandLine "docker", "build", "-t", "${project.name}:${project.version}", "."
+    commandLine "docker", "run", "-t", "${project.name}:${project.version}"
 }
+
