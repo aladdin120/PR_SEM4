@@ -24,17 +24,9 @@ public class Main {
             System.out.println("Thread 2 ends");
         });
         thread1.start();
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
         thread2.start();
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
         System.out.println("Main in ListSyncTask ends");
     }
     public static void SetSemTask() {
@@ -57,17 +49,9 @@ public class Main {
             System.out.println("Thread 2 ends");
         });
         thread1.start();
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
         thread2.start();
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
         System.out.println("Main in SetSemTask ends");
     }
 
