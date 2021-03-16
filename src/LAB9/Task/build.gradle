@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+mainClassName = 'org.example.Task.Main'
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class' : 'org.example.Task.Main'
+    }
+}
+
+task task1(){
+        task1.dependsOn jar
+        copy {
+            from 'build/libs/Task-1.0-SNAPSHOT.jar'
+            into 'Temp'
+        }
+    task1.dependsOn buildDockerImage
+}
+
+task buildDockerImage(type: Exec) {
+    commandLine "docker", "build", "-t", "${project.name}:${project.version}"
+}
