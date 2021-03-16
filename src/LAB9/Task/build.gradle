@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'org.example'
-version '1.0-SNAPSHOT'
+version '1.0'
 
 repositories {
     mavenCentral()
@@ -27,13 +27,14 @@ jar {
     }
 }
 
-task task1(){
+
+task task1 {
         task1.dependsOn jar
         copy {
-            from 'build/libs/Task-1.0-SNAPSHOT.jar'
+            from 'build/libs/task-1.0.jar'
             into 'Temp'
         }
-    task1.dependsOn buildDockerImage
+    task1.doFirst buildDockerImage
 }
 
 task buildDockerImage(type: Exec) {
