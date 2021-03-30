@@ -1,82 +1,69 @@
 package LAB4;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.*;
 
-public class ExecutorServiceClass implements ExecutorService {
+import static java.lang.ref.Reference.reachabilityFence;
 
-    private boolean shutdown;
-    private int count;
+public class ExecutorServiceClass extends AbstractExecutorService  {
 
+    private final ExecutorService e;
 
-    public ExecutorServiceClass(int count) {
-        shutdown = false;
-        this.count = count;
+    public ExecutorServiceClass(int threadsCount) {
+        e = Executors.newFixedThreadPool(threadsCount);
     }
 
     @Override
-    public void shutdown() {
-
-    }
+    public void shutdown() { e.shutdown(); }
 
     @Override
     public List<Runnable> shutdownNow() {
-        return null;
+        try {
+            return e.shutdownNow();
+        } finally { reachabilityFence(this); }
     }
 
     @Override
     public boolean isShutdown() {
-        return false;
+        try {
+            return e.isShutdown();
+        } finally { reachabilityFence(this); }
     }
 
     @Override
     public boolean isTerminated() {
-        return false;
+        try {
+            return e.isTerminated();
+        } finally { reachabilityFence(this); }
     }
 
     @Override
     public boolean awaitTermination(long timeout, TimeUnit unit) throws InterruptedException {
-        return false;
+            try {
+                return e.awaitTermination(timeout, unit);
+            } finally { reachabilityFence(this); }
     }
 
     @Override
     public <T> Future<T> submit(Callable<T> task) {
-        return null;
-    }
-
-    @Override
-    public <T> Future<T> submit(Runnable task, T result) {
-        return null;
+        try {
+            return e.submit(task);
+        } finally { reachabilityFence(this); }
     }
 
     @Override
     public Future<?> submit(Runnable task) {
-        return null;
-    }
-
-    @Override
-    public <T> List<Future<T>> invokeAll(Collection<? extends Callable<T>> tasks) throws InterruptedException {
-        return null;
-    }
-
-    @Override
-    public <T> List<Future<T>> invokeAll(Collection<? extends Callable<T>> tasks, long timeout, TimeUnit unit) throws InterruptedException {
-        return null;
-    }
-
-    @Override
-    public <T> T invokeAny(Collection<? extends Callable<T>> tasks) throws InterruptedException, ExecutionException {
-        return null;
-    }
-
-    @Override
-    public <T> T invokeAny(Collection<? extends Callable<T>> tasks, long timeout, TimeUnit unit) throws InterruptedException, ExecutionException, TimeoutException {
-        return null;
+        try {
+            return e.submit(task);
+        } finally { reachabilityFence(this); }
     }
 
     @Override
     public void execute(Runnable command) {
-
+        try {
+            e.execute(command);
+        } finally { reachabilityFence(this); }
     }
 }
