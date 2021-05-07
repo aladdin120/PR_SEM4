@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta xmlns:th="http://www.thymeleaf.org">
+    <title>Items</title>
+    <style>
+        h1 {
+            font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif,serif;
+        }
+        table th, table td {
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<form method="get" action="/home">
+    <input type="submit" value="Home">
+</form>
+<h1>Item List</h1>
+<br/>
+<div>
+    <table border="1">
+        <tr>
+            <th>Item ID</th>
+            <th>Name</th>
+            <th>Creation Date</th>
+            <th>Price</th>
+        </tr>
+        <tr th:each ="item : ${items}">
+            <td th:utext="${item.id}">...</td>
+            <td th:utext="${item.name}">...</td>
+            <td th:utext="${item.creationDate}">...</td>
+            <td th:utext="${item.price}">...</td>
+        </tr>
+    </table>
+</div>
+<br/><br/>
+<div>
+    <div style="display:inline-block;">
+        <form method="get" action="addItem">
+            <input type="submit" value="Add Item">
+        </form>
+    </div>
+    <div style="display:inline-block;">
+        <form method="get" action="getIBN">
+            <input type="submit" value="Filter By Name">
+        </form>
+    </div>
+    <div style="display:inline-block;">
+        <form method="get" action="getIBD">
+            <input type="submit" value="Filter By Date">
+        </form>
+    </div>
+    <div style="display:inline-block;">
+        <form method="get" action="getIBP">
+            <input type="submit" value="Filter By Price">
+        </form>
+    </div>
+</div>
+<br/><br/>
+
+<h1>Order List</h1>
+<div>
+    <table border="1">
+        <tr>
+            <th>Order ID</th>
+            <th>Number of Order</th>
+            <th>Order Date</th>
+        </tr>
+        <tr th:each ="order : ${orders}">
+            <td th:utext="${order.id}">...</td>
+            <td th:utext="${order.number}">...</td>
+            <td th:utext="${order.orderDate}">...</td>
+        </tr>
+    </table>
+</div>
+<br/><br/>
+<div>
+    <div style="display:inline-block;">
+        <form method="get" action="addOrder">
+            <input type="submit" value="Add Order">
+        </form>
+    </div>
+    <div style="display:inline-block;">
+        <form method="get" action="getOBN">
+            <input type="submit" value="Filter By Number">
+        </form>
+    </div>
+    <div style="display:inline-block;">
+        <form method="get" action="getOBD">
+            <input type="submit" value="Filter By Date">
+        </form>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta xmlns:th="http://www.thymeleaf.org">
+    <title>Home</title>
+    <style>
+        h1 {
+            font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif,serif;
+        }
+    </style>
+</head>
+<body>
+    <h1 th:utext="${name}"></h1>
+    <span th:text="${group}"> </span>
+    <span th:text="${var}"></span>
+    <br><br>
+    <form method="get" action="/itemsList">
+        <input type="submit" value="Show List">
+    </form>
+</body>
+</html>

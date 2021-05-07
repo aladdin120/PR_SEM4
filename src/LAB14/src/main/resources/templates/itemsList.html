@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta xmlns:th="http://www.thymeleaf.org">
+    <title>Items</title>
+    <style>
+        h1 {
+            font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif,serif;
+        }
+        table th, table td {
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<form method="get" action="/home">
+    <input type="submit" value="Home">
+</form>
+<h1>Item List</h1>
+<br/>
+<div>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Creation Date</th>
+            <th>Price</th>
+        </tr>
+        <tr th:each ="item : ${items}">
+            <td th:utext="${item.name}">...</td>
+            <td th:utext="${item.creationDate}">...</td>
+            <td th:utext="${item.price}">...</td>
+        </tr>
+    </table>
+</div>
+<br/><br/>
+<form method="get" action="addItem">
+    <input type="submit" value="Add Item">
+</form>
+<br>
+<form th:action="@{delItem}"
+      th:object="${item}" method="POST">
+    <label>
+        <input type="text" th:field="*{name}" placeholder="Enter name"/>
+    </label>
+    <input type="submit" value="Delete" />
+</form>
+<br/><br/>
+
+<h1>Order List</h1>
+<div>
+    <table border="1">
+        <tr>
+            <th>Number of Order</th>
+            <th>Order Date</th>
+        </tr>
+        <tr th:each ="order : ${orders}">
+            <td th:utext="${order.number}">...</td>
+            <td th:utext="${order.orderDate}">...</td>
+        </tr>
+    </table>
+</div>
+<br/><br/>
+
+<form method="get" action="addOrder">
+    <input type="submit" value="Add Order">
+</form>
+<br>
+<form th:action="@{delOrd}"
+      th:object="${order}" method="POST">
+    <label>
+        <input type="text" th:field="*{number}" placeholder="Enter number"/>
+    </label>
+    <input type="submit" value="Delete" />
+</form>
+</body>
+</html>

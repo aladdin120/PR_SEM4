@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta xmlns:th="http://www.thymeleaf.org">
+    <title>Items</title>
+    <style>
+        h1 {
+            font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif,serif;
+        }
+        label {
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+<h1>Add Item</h1>
+<form method="get" action="/home">
+    <input type="submit" value="Home">
+</form>
+<br/><br/>
+<form th:action="@{addItem}"
+      th:object="${newItem}" method="POST">
+    Name:
+    <label>
+        <input type="text" th:field="*{name}" />
+    </label>
+    <br/>
+    Creation Date:
+    <label>
+        <input type="date" th:field="*{creationDate}" />
+    </label>
+    <br/>
+    Price:
+    <label>
+        <input type="text" th:field="*{price}" />
+    </label>
+    <br/><br/>
+    <input type="submit" value="Create" />
+</form>
+
+</body>
+</html>

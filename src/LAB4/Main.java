@@ -7,7 +7,7 @@ import java.util.concurrent.Future;
 public class Main {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
-        ExecutorServiceClass es = new ExecutorServiceClass(4);
+        ExecutorServiceClass es = new ExecutorServiceClass(2);
 
         Callable<String> myName = () -> {
             return "My name is " + Thread.currentThread().getName() + "\n";
@@ -26,6 +26,4 @@ public class Main {
         System.out.println(f1.get() + f2.get() + f3.get());
         es.shutdown();
     }
-
-
 }

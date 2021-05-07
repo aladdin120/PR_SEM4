@@ -2,18 +2,43 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="LAB22" />
         <module name="LAB10" />
-        <module name="demo" />
+        <module name="LAB21" />
+        <module name="LAB13" />
+        <module name="LAB24" />
         <module name="LAB12" />
+        <module name="LAB23" />
+        <module name="LAB20" />
+        <module name="demo" />
+        <module name="LAB19" />
+        <module name="LAB18" />
+        <module name="LAB15" />
+        <module name="LAB14" />
+        <module name="LAB17" />
+        <module name="LAB16" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="LAB13" options="-parameters" />
+      <module name="LAB14" options="-parameters" />
+      <module name="LAB15" options="-parameters" />
+      <module name="LAB16" options="-parameters" />
+      <module name="LAB17" options="-parameters" />
+      <module name="LAB18" options="-parameters" />
+      <module name="LAB19" options="-parameters" />
+      <module name="LAB20" options="-parameters" />
+      <module name="LAB21" options="-parameters" />
+      <module name="LAB22" options="-parameters" />
+      <module name="LAB23" options="-parameters" />
+      <module name="LAB24" options="-parameters" />
       <module name="demo" options="-parameters" />
     </option>
   </component>
